@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "dgSpecHash": "40FuM1znhjIsz33ttkMYaJ4TN9nQR1ZynsFXo1An8QpMhCtoQe0VIo55RtCte7Df+TsDqwc6hebcZCuIeEK0kQ==",
+  "success": true,
+  "projectFilePath": "C:\\code\\3N5\\domestique_microservices\\Budget\\Budget\\Budget.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\fbergeron\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\fbergeron\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\fbergeron\\.nuget\\packages\\mysqlconnector\\2.2.0-rc.2\\mysqlconnector.2.2.0-rc.2.nupkg.sha512",
+    "C:\\Users\\fbergeron\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
+    "C:\\Users\\fbergeron\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
+    "C:\\Users\\fbergeron\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
+    "C:\\Users\\fbergeron\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.6.3\\swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512",
+    "C:\\Users\\fbergeron\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
+    "C:\\Users\\fbergeron\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
