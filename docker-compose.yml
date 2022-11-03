@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  budget:
+    build: Budget\Budget\
+    depends_on:
+      - mariadb
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+
+  tache:
+    build: taches_python/
+    depends_on:
+      - mariadb
+
+  mariadb:
+    image: mariadb
+    networks:
+      - backend
+    volumes:
+      - ${PWD}/mariadb:/var/lib/mysql
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MYSQL_DATABASE: domestique
+
+networks:        
+  backend:
+    driver: bridge
