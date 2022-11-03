@@ -1,6 +1,6 @@
-from typing import List, Optional
+from typing import List
 
-from fastapi import FastAPI, HTTPException, Depends, status
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
 import mariadb
@@ -12,10 +12,9 @@ try:
     conn = mariadb.connect(
         user="root",
         password="root",
-        host="localhost",
+        host="host.docker.internal",
         port=3306,
         database="domestique"
-
     )
 except mariadb.Error as e:
     print(f"Error connecting to MariaDB Platform: {e}")
@@ -49,6 +48,7 @@ def creer_bd():
         );
     """)
     conn.commit()
+
 
 @app.get("/")
 def root():
@@ -89,7 +89,5 @@ def recuperer_tache(id_tache: int):
     tuple_tache = cursor.fetchone()
     if tuple_tache is None:
         raise HTTPException(status_code=404, detail=f"Une tâche ayant l'identifiant {id_tache} n'a pu être trouvée")
-    # fetchone retourne un tuple. FastAPI fait la conversion avant de lancer vers le client,
-    # mais pas lorsque je l'appelle de l'interne. Donc je dois créer mon objet moi-même
     tache: TacheBD = TacheBD(id=tuple_tache[0], nom_tache=tuple_tache[1], due_pour=tuple_tache[2])
     return tache
