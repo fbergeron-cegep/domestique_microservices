@@ -12,7 +12,7 @@ namespace Budget.Controllers
         private readonly MySqlConnection _connection;
         public BudgetController()
         {
-            _connection = new MySqlConnection("Server=host.docker.internal;User ID=root;Password=root;Database=domestique");
+            _connection = new MySqlConnection("Server=mariadb;User ID=root;Password=root;Database=domestique");
             _connection.Open();
 
             var creation =

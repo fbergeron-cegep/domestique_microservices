@@ -1,8 +1,18 @@
 version: "3.8"
 
 services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - 5860:80
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - budget
+      - tache
+
   budget:
-    build: Budget\Budget\
+    build: Budget/
     depends_on:
       - mariadb
     environment:
@@ -14,15 +24,13 @@ services:
       - mariadb
 
   mariadb:
-    image: mariadb
-    networks:
-      - backend
+    image: mariadb:latest
     volumes:
-      - ${PWD}/mariadb:/var/lib/mysql
+       - data:/var/lib/mysql
     environment:
-      MARIADB_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: domestique
+      MYSQL_USER: root
 
-networks:        
-  backend:
-    driver: bridge
+volumes:
+  data:

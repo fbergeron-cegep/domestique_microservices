@@ -12,18 +12,18 @@ try:
     conn = mariadb.connect(
         user="root",
         password="root",
-        host="host.docker.internal",
+        host="mariadb",
         port=3306,
         database="domestique"
     )
 except mariadb.Error as e:
-    print(f"Error connecting to MariaDB Platform: {e}")
+    print(f"Zut, Error connecting to MariaDB Platform: {e}")
     sys.exit(1)
 
 # Get Cursor
 cursor = conn.cursor()
 
-app = FastAPI()
+app = FastAPI(root_path="/route1/")
 
 
 class TacheForm(BaseModel):
