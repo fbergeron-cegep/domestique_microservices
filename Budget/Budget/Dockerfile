@@ -1,20 +1,19 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
-WORKDIR /app
-EXPOSE 80
-EXPOSE 443
-
+﻿# https://hub.docker.com/_/microsoft-dotnet
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
-WORKDIR /src
-COPY ["Budget/Budget.csproj", "Budget/"]
-RUN dotnet restore "Budget/Budget.csproj"
-COPY . .
-WORKDIR "/src/Budget"
-RUN dotnet build "Budget.csproj" -c Release -o /app/build
+WORKDIR /source
 
-FROM build AS publish
-RUN dotnet publish "Budget.csproj" -c Release -o /app/publish
+# copy csproj and restore as distinct layers
+COPY *.sln .
+COPY Budget/*.csproj ./Budget/
+RUN dotnet restore
 
-FROM base AS final
+# copy everything else and build app
+COPY Budget/. ./Budget/
+WORKDIR /source/Budget
+RUN dotnet publish -c release -o /app --no-cache
+
+# final stage/image
+FROM mcr.microsoft.com/dotnet/aspnet:5.0
 WORKDIR /app
-COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Budget.dll"]
+COPY --from=build /app ./
+ENTRYPOINT ["dotnet", "Budget.dll", "--urls", "http://+:8503"]
